@@ -1,24 +1,70 @@
 import { v4 as uuidv4 } from 'uuid';
+import database from '../firebase/firebase';
 
 
 //Action generators (Action)
 
+// without firebase  
+// Component calls action generator
+// Action generator returns object
+// Component Dispaches Object 
+// Redux Store Changes
+
+// with firebase  
+// Component calls action generator
+// Action generator returns function
+// Component Dispaches fuction
+// function runs (has the ability to dispatch other actions and do whatever it wants)
+
+
+
 //ADD_EXPENSE
-export const addExpense = ({ 
-    description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0
-}={})=>{
+// export const addExpense = ({ 
+//     description = '',
+//     note = '',
+//     amount = 0,
+//     createdAt = 0
+// }={})=>{
+//     return {
+//         type:'ADD_EXPENSE',
+//         expense:{
+//             id: uuidv4(),
+//             description,
+//             note,
+//             amount,
+//             createdAt
+//         }
+
+//     };
+// };
+
+export const addExpense = (expense)=>{
     return {
         type:'ADD_EXPENSE',
-        expense:{
-            id: uuidv4(),
-            description,
-            note,
-            amount,
-            createdAt
-        }
+        expense
+    };
+};
+
+// return a fuction to start addExpense
+export const startAddExpense = (expenceData = {}) => {
+    return (dispatch) =>{
+        const {
+            description = '',
+            note = '',
+            amount = 0,
+            createdAt = 0
+        } = expenceData;
+
+        const expense = { description, amount, note, createdAt };
+
+        //saving to the database
+        return database.ref('expenses').push(expense).then((ref)=>{
+            dispatch(addExpense({
+                id: ref.key,
+                ...expense
+            }));
+        });
+
 
     };
 };
