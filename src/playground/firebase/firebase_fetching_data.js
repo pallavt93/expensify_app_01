@@ -33,14 +33,14 @@ const database = firebase.database();
 
 // with once 
 
-// database.ref().once('value')
-// .then((snapshot)=>{
-//     const val = snapshot.val();
-//     console.log(val);
-// })
-// .catch((e)=>{
-//     console.log('error ',e)
-// });
+database.ref().once('value')
+.then((snapshot)=>{
+    const val = snapshot.val();
+    console.log(val);
+})
+.catch((e)=>{
+    console.log('error ',e)
+});
 
 // with on
 
