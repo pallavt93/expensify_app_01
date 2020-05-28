@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Login Page Correctly 1`] = `
+<div>
+  LoginPage
+  <div>
+    <button>
+      log in
+    </button>
+  </div>
+</div>
+`;
