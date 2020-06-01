@@ -34,7 +34,7 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(<p>Loading...</p> , document.getElementById('app'));
+
 
 let hasRendered = false;
 const renderApp = ()=>{
@@ -44,18 +44,24 @@ const renderApp = ()=>{
     }
 };
 
+ReactDOM.render(<p>Loading...</p> , document.getElementById('app'));
+
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
         console.log("logged in");
+        console.log(user.uid);
         store.dispatch(login(user.uid));
+        console.log(history.location.pathname);
         store.dispatch(startSetExpenses()).then(()=>{
             renderApp();
             if(history.location.pathname === '/'){
+                console.log(user.uid);
                 history.push('/dashboard');
             }
         });
     }
     else{
+        console.log("logged out");
         store.dispatch(logout());
         renderApp();
         history.push('/');

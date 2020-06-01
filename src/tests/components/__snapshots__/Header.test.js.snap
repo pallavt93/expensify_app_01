@@ -7,10 +7,9 @@ exports[`should render Header correctly 1`] = `
   </h1>
   <[object Object]
     activeClassName="is-active"
-    exact={true}
-    to="/"
+    to="/dashboard"
   >
-    To Home
+    Dashboard
   </[object Object]>
   <[object Object]
     activeClassName="is-active"
