@@ -2,11 +2,26 @@
 
 exports[`should render Login Page Correctly 1`] = `
 <div>
-  LoginPage
-  <div>
-    <button>
-      log in
-    </button>
+  <div
+    className="box-layout"
+  >
+    <div
+      className="box-layout__box"
+    >
+      <h1
+        className="box-layout__title"
+      >
+        Expensify
+      </h1>
+      <p>
+        track your expenses.
+      </p>
+      <button
+        className="button"
+      >
+        Login with Google
+      </button>
+    </div>
   </div>
 </div>
 `;
